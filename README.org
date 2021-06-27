@@ -1,7 +1,7 @@
 # 27 Jun 2021 15:29
 An attempt: Emacs-Prelude-SuperCollider on Windows
 
-*Note:* Everything is working fine, I even can boot the server but there is an IPC issue. mkfifo.exe provided by gitbash doesn't work in the way that posix pipes work.
+*Note:* Everything is working fine, I can even boot the server but there is an IPC issue. mkfifo.exe provided by gitbash doesn't work in the way that posix pipes work.
 https://stackoverflow.com/questions/31625417/fifo-file-windows-example.
 
 https://superuser.com/questions/104153/creating-a-named-pipe-on-windows
@@ -13,21 +13,21 @@ So, there is no communication between emacs-sclang. I can not evaluate any code.
 2. Replace 002_SuperCollider.el with the one from the current repo.  You might need to fix the  sclang path.
 3. Replace sclang directory with the one from the current repo.  Everything is the same except sclang-interp.el.  mkfifo changed to mkfifo.exe
 4. Add mkfifo.exe and cat.exe to the path variable. I added the whole gitbash directory. It might be something like "C:/Program \Files/Git/usr/bin"
-     + ..via CMD
++ ..via CMD
 
 #+BEGIN_SRC shell
 setx /M path "%PATH%;C:\path\to\mkfifo.exe\"
 #+END_SRC
 
-     + ..or via the GUI
++ ..or via the GUI
          - settings
          - enviroment-variables
          - add-path-sys-variable
          - gitbash dir (mkfifo.exe program is in there)
          - if mkfifo is accessible by cmd then it is done
-     + Add sclang.exe to the path variable like mkfifo.exe
-     + Replace /Extensions/scel/sc files with the ones from the current repo. You can check SC extensions path via Platform.userExtensionDir;
-     + Add s.boot; in the SC startup file (and maybe a "startup sound". example: play{SinOsc.ar * Env.perc.kr(doneAction:2)})
++ Add sclang.exe to the path variable like mkfifo.exe
++ Replace /Extensions/scel/sc files with the ones from the current repo. You can check SC extensions path via Platform.userExtensionDir;
++ Add s.boot; in the SC startup file (and maybe a "startup sound". example: play{SinOsc.ar * Env.perc.kr(doneAction:2)})
 
 Now you might be able to boot the server on emacs (C-c-C-o) in a sclang-workspace(C-c-W).
 
