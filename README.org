@@ -13,11 +13,11 @@ So, there is no communication between emacs-sclang. I can not evaluate any code.
 2. Replace 002_SuperCollider.el with the one from the current repo.  You might need to fix the  sclang path.
 3. Replace sclang directory with the one from the current repo.  Everything is the same except sclang-interp.el.  mkfifo changed to mkfifo.exe
 4. Add mkfifo.exe and cat.exe to the path variable. I added the whole gitbash directory. It might be something like "C:/Program \Files/Git/usr/bin"
-   + ..via CMD
+   - ..via CMD
 #+BEGIN_SRC shell
 setx /M path "%PATH%;C:\path\to\mkfifo.exe\"
 #+END_SRC
-   + ..or via the GUI
+   - ..or via the GUI
      + settings
      + enviroment-variables
      + add-path-sys-variable
