@@ -25,9 +25,9 @@ setx /M path "%PATH%;C:\path\to\mkfifo.exe\"
          - add-path-sys-variable
          - gitbash dir (mkfifo.exe program is in there)
          - if mkfifo is accessible by cmd then it is done
-+ Add sclang.exe to the path variable like mkfifo.exe
-+ Replace /Extensions/scel/sc files with the ones from the current repo. You can check SC extensions path via Platform.userExtensionDir;
-+ Add s.boot; in the SC startup file (and maybe a "startup sound". example: play{SinOsc.ar * Env.perc.kr(doneAction:2)})
+5. Add sclang.exe to the path variable like mkfifo.exe
+6. Replace /Extensions/scel/sc files with the ones from the current repo. You can check SC extensions path via Platform.userExtensionDir;
+7. Add s.boot; in the SC startup file (and maybe a "startup sound". example: play{SinOsc.ar * Env.perc.kr(doneAction:2)})
 
 Now you might be able to boot the server on emacs (C-c-C-o) in a sclang-workspace(C-c-W).
 
