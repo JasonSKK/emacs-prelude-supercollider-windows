@@ -1,0 +1,34 @@
+# 27 Jun 2021 15:29
+An attempt: Emacs-Prelude-SuperCollider on Windows
+
+*Note:* Everything is working fine, I even can boot the server but there is an IPC issue. mkfifo.exe provided by gitbash doesn't work in the way that posix pipes work.
+https://stackoverflow.com/questions/31625417/fifo-file-windows-example.
+
+https://superuser.com/questions/104153/creating-a-named-pipe-on-windows
+
+So, there is no communication between emacs-sclang. I can not evaluate any code. No mkfifo alternative found that works (Tried: gitbash, gnuwin).
+
+* Setup
+1. Follow up the steps from here https://github.com/Vasileios/emacs_prelude_supercollider
+2. Replace 002_SuperCollider.el with the one from the current repo.  You might need to fix the  sclang path.
+3. Replace sclang directory with the one from the current repo.  Everything is the same except sclang-interp.el.  mkfifo changed to mkfifo.exe
+4. Add mkfifo.exe and cat.exe to the path variable. I added the whole gitbash directory. It might be something like "C:/Program \Files/Git/usr/bin"
+     + ..via CMD
+
+#+BEGIN_SRC shell
+setx /M path "%PATH%;C:\path\to\mkfifo.exe\"
+#+END_SRC
+
+     + ..or via the GUI
+         - settings
+         - enviroment-variables
+         - add-path-sys-variable
+         - gitbash dir (mkfifo.exe program is in there)
+         - if mkfifo is accessible by cmd then it is done
+     + Add sclang.exe to the path variable like mkfifo.exe
+     + Replace /Extensions/scel/sc files with the ones from the current repo. You can check SC extensions path via Platform.userExtensionDir;
+     + Add s.boot; in the SC startup file (and maybe a "startup sound". example: play{SinOsc.ar * Env.perc.kr(doneAction:2)})
+
+Now you might be able to boot the server on emacs (C-c-C-o) in a sclang-workspace(C-c-W).
+
+Additional research has to be done on how mkfifo can work on Win in the way that works on linux or macos, or look up for any alternatives. "Named pipes" is suggested here: https://mingw-users.narkive.com/P8DUzIf6/is-there-workable-mkfifo-for-windows
